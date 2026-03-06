@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSE 1.2 Master Study Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
+        .chart-container { position: relative; width: 100%; max-width: 100%; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.25rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        .text-glow { text-shadow: 0 0 15px currentColor; }
+        .stat-glow { filter: drop-shadow(0 0 8px currentColor); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #00F7FF; border-radius: 4px; }
+    </style>
+</head>
+<body class="p-4 md:p-8 lg:p-12">
+<!--
+Palette: Neon Cyber Academic
+Background: #0f172a (Slate 900)
+Accents: #EEFABD, #F1FF5E, #00F7FF, #C47BE4, #FFF58A, #FF3E9B
+Plan: 
+1. Header establishes context (CSE 1.2, 3 Months).
+2. Phase Progression (Horizontal Bar) outlines the 13-week syllabus attack plan.
+3. Time Economics (Doughnut) breaks down the intensive 168-hour week.
+4. Completion Velocity (Line/Area) visualizes the aggressive 100% mastery target.
+5. Study Block Mechanics (Stacked Bar) illustrates daily task distribution.
+6. The 1-3-7-30 Spaced Repetition Protocol (HTML Flowchart) shows the revision strategy.
+Choices:
+- Master Plan Timeline -> Horizontal Bar Chart (Goal: Organize. Chart.js. Shows phase durations clearly).
+- Weekly Time Allocation -> Doughnut Chart (Goal: Composition. Chart.js. Perfect for part-to-whole 168hr breakdown).
+- Syllabus Velocity -> Area Chart (Goal: Change/Trend. Chart.js. Visualizes momentum toward the 100% goal).
+- Daily Study blocks -> Stacked Bar (Goal: Compare. Chart.js. Breaks down the 7hr weekday vs 14hr weekend).
+- Spaced Repetition -> CSS Grid/Flexbox Flowchart (Goal: Process. HTML/Tailwind. Fulfills NO SVG/MERMAID requirement).
+Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in the output within the HTML comments or code.
+-->
+
+    <main class="max-w-7xl mx-auto space-y-10">
+        
+        <header class="text-center space-y-4 mb-16 mt-8">
+            <div class="inline-block px-4 py-1 rounded-full border border-[#00F7FF] text-[#00F7FF] text-sm font-bold tracking-widest uppercase mb-4 shadow-[0_0_10px_#00F7FF40]">April 1 — June 30</div>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white">
+                CSE 1.2 <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F7FF] to-[#C47BE4] text-glow">Mastery</span> Plan
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
+                A 3-month, data-driven academic strategy optimized for Electronic Devices & Circuits (CSE 1201) and C Programming (CSE 1204). Designed for maximum retention alongside a 10 AM - 5 PM daily class schedule.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <div class="glass-card px-6 py-4 flex items-center gap-4">
+                    <span class="text-3xl text-[#EEFABD] stat-glow">📚</span>
+                    <div class="text-left">
+                        <div class="text-2xl font-bold text-white">100%</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider">Syllabus Target</div>
+                    </div>
+                </div>
+                <div class="glass-card px-6 py-4 flex items-center gap-4">
+                    <span class="text-3xl text-[#F1FF5E] stat-glow">⚡</span>
+                    <div class="text-left">
+                        <div class="text-2xl font-bold text-white">63</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider">Total Study Hours/Wk</div>
+                    </div>
+                </div>
+                <div class="glass-card px-6 py-4 flex items-center gap-4">
+                    <span class="text-3xl text-[#FF3E9B] stat-glow">🎯</span>
+                    <div class="text-left">
+                        <div class="text-2xl font-bold text-white">0</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider">Backlog Goal</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="glass-card p-6 md:p-10 border-t-4 border-[#C47BE4]">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-white mb-2">The 13-Week Operational Timeline</h2>
+                <p class="text-slate-300">
+                    This structural roadmap divides the entire CSE 1.2 syllabus into five distinct phases. It aggressively fronts-loads concept learning to reserve the final three weeks exclusively for past-paper execution and mock exams.
+                </p>
+            </div>
+            <div class="chart-container w-full">
+                <canvas id="timelineChart"></canvas>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <section class="glass-card p-6 md:p-8 border-t-4 border-[#00F7FF]">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-white mb-2">Weekly Time Economics</h2>
+                    <p class="text-slate-300 text-sm">
+                        Managing 168 hours a week. With 35 hours consumed by university classes, this breakdown visualizes the strict allocation of sleep (7 hrs/night), commute buffers, and the intensive 63-hour independent study requirement.
+                    </p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="timeEconomicsChart"></canvas>
+                </div>
+            </section>
+
+            <section class="glass-card p-6 md:p-8 border-t-4 border-[#F1FF5E]">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-white mb-2">Syllabus Velocity Matrix</h2>
+                    <p class="text-slate-300 text-sm">
+                        The required cumulative completion rate. Notice the steep acceleration between Weeks 4 and 8 (Core Analysis), aiming to hit 100% completion by Week 10, completely halting new learning thereafter.
+                    </p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="velocityChart"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <section class="glass-card p-6 md:p-10 border-t-4 border-[#EEFABD]">
+            <div class="mb-6 flex flex-col md:flex-row justify-between md:items-end gap-4">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl font-bold text-white mb-2">Study Block Architecture</h2>
+                    <p class="text-slate-300">
+                        A comparative view of how study hours are spent on a typical Weekday (7 hours total, split around classes) versus a Weekend (Thursday/Friday, 14 hours total). Weekends heavily prioritize problem-solving and weekly reviews.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                    <span class="px-2 py-1 bg-[#EEFABD] text-slate-900 rounded">Concepts</span>
+                    <span class="px-2 py-1 bg-[#F1FF5E] text-slate-900 rounded">Problems</span>
+                    <span class="px-2 py-1 bg-[#00F7FF] text-slate-900 rounded">Revision</span>
+                    <span class="px-2 py-1 bg-[#C47BE4] text-white rounded">Past Papers</span>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="blockArchitectureChart"></canvas>
+            </div>
+        </section>
+
+        <section class="glass-card p-6 md:p-10 border-t-4 border-[#FFF58A]">
+            <div class="mb-8 text-center">
+                <h2 class="text-3xl font-bold text-white mb-2">1-3-7-30 Spaced Repetition Protocol</h2>
+                <p class="text-slate-300 max-w-2xl mx-auto">
+                    Reading notes once guarantees forgetting. This workflow uses Active Recall (the 'Blank Sheet' method) at mathematically optimized intervals to force concepts into long-term memory before exams.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2">
+                
+                <div class="bg-[#0f172a] border-2 border-[#00F7FF] rounded-xl p-5 w-full md:w-1/4 text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-[#00F7FF] opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                    <div class="text-4xl mb-3">🌙</div>
+                    <div class="font-black text-xl text-[#00F7FF] mb-1">Day 1</div>
+                    <div class="text-white font-semibold mb-2">Nightly Quick Recall</div>
+                    <div class="text-sm text-slate-400">10 mins before sleep. Skim daily notes, write 3 main takeaways.</div>
+                </div>
+
+                <div class="text-[#00F7FF] text-3xl rotate-90 md:rotate-0 font-black stat-glow">➔</div>
+
+                <div class="bg-[#0f172a] border-2 border-[#EEFABD] rounded-xl p-5 w-full md:w-1/4 text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-[#EEFABD] opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                    <div class="text-4xl mb-3">📖</div>
+                    <div class="font-black text-xl text-[#EEFABD] mb-1">Day 3</div>
+                    <div class="text-white font-semibold mb-2">Re-read & Connect</div>
+                    <div class="text-sm text-slate-400">Review summaries. Connect previous concepts to new class material.</div>
+                </div>
+
+                <div class="text-[#EEFABD] text-3xl rotate-90 md:rotate-0 font-black stat-glow">➔</div>
+
+                <div class="bg-[#0f172a] border-2 border-[#FFF58A] rounded-xl p-5 w-full md:w-1/4 text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-[#FFF58A] opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                    <div class="text-4xl mb-3">⚙️</div>
+                    <div class="font-black text-xl text-[#FFF58A] mb-1">Day 7</div>
+                    <div class="text-white font-semibold mb-2">Weekly Synthesis</div>
+                    <div class="text-sm text-slate-400">Weekend blocks. Blank-sheet recall without notes. Code dry runs.</div>
+                </div>
+
+                <div class="text-[#FFF58A] text-3xl rotate-90 md:rotate-0 font-black stat-glow">➔</div>
+
+                <div class="bg-[#0f172a] border-2 border-[#C47BE4] rounded-xl p-5 w-full md:w-1/4 text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-[#C47BE4] opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                    <div class="text-4xl mb-3">🏆</div>
+                    <div class="font-black text-xl text-[#C47BE4] mb-1">Day 30</div>
+                    <div class="text-white font-semibold mb-2">Month End Test</div>
+                    <div class="text-sm text-slate-400">Solve hardest problems of the month. Past university question integration.</div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="text-center py-8 text-slate-500 text-sm">
+            <p class="mb-2">Execute with precision. Rest with intention.</p>
+            <p>Designed optimized for high-performance academic tracking.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        const wrapText = l => {
+            if (l.length <= 16) return l;
+            let w = l.split(' '), res = [], c = '';
+            for (let i = 0; i < w.length; i++) {
+                if ((c + w[i]).length > 16) {
+                    if (c.trim() !== '') res.push(c.trim());
+                    c = w[i] + ' ';
+                } else {
+                    c += w[i] + ' ';
+                }
+            }
+            if (c.trim() !== '') res.push(c.trim());
+            return res;
+        };
+
+        const ttConf = {
+            callbacks: {
+                title: function(items) {
+                    const i = items[0];
+                    let l = i.chart.data.labels[i.dataIndex];
+                    return Array.isArray(l) ? l.join(' ') : l;
+                }
+            },
+            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+            titleColor: '#fff',
+            bodyColor: '#cbd5e1',
+            borderColor: '#334155',
+            borderWidth: 1,
+            padding: 12
+        };
+
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.font.family = "'Outfit', sans-serif";
+        Chart.defaults.scale.grid.color = 'rgba(255, 255, 255, 0.05)';
+
+        const tlCtx = document.getElementById('timelineChart').getContext('2d');
+        new Chart(tlCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapText('Phase 1: Foundation (W1-4)'),
+                    wrapText('Phase 2: Core Analysis (W5-8)'),
+                    wrapText('Phase 3: Advanced Concepts (W9-10)'),
+                    wrapText('Phase 4: Exam Prep & Past Papers (W11-12)'),
+                    wrapText('Phase 5: Buffer & Polish (W13)')
+                ],
+                datasets: [{
+                    label: 'Duration in Weeks',
+                    data: [4, 4, 2, 2, 1],
+                    backgroundColor: ['#EEFABD', '#F1FF5E', '#EEFABD', '#C47BE4', '#FFF58A'],
+                    borderWidth: 0,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: ttConf
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Weeks Allocated', color: '#f8fafc' },
+                        max: 5,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+
+        const teCtx = document.getElementById('timeEconomicsChart').getContext('2d');
+        new Chart(teCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    wrapText('Sleep & Recovery (7h/day)'),
+                    wrapText('University Classes (10am-5pm)'),
+                    wrapText('Weekday Deep Work (Mon-Wed, Sat-Sun)'),
+                    wrapText('Weekend Problem Sprints (Thu-Fri)'),
+                    wrapText('Buffer, Commute & Meals')
+                ],
+                datasets: [{
+                    data: [49, 35, 35, 28, 21],
+                    backgroundColor: ['#FF3E9B', '#C47BE4', '#F1FF5E', '#00F7FF', '#EEFABD'],
+                    borderWidth: 2,
+                    borderColor: '#0f172a',
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { color: '#e2e8f0', padding: 20 } },
+                    tooltip: ttConf
+                }
+            }
+        });
+
+        const velCtx = document.getElementById('velocityChart').getContext('2d');
+        new Chart(velCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 0', 'Week 4', 'Week 8', 'Week 10', 'Week 13'],
+                datasets: [{
+                    label: 'Syllabus Mastery %',
+                    data: [0, 40, 80, 100, 100],
+                    borderColor: '#00F7FF',
+                    backgroundColor: 'rgba(0, 247, 255, 0.15)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#00F7FF',
+                    pointRadius: 6,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: ttConf
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: { display: true, text: 'Completion Percentage', color: '#f8fafc' }
+                    }
+                }
+            }
+        });
+
+        const baCtx = document.getElementById('blockArchitectureChart').getContext('2d');
+        new Chart(baCtx, {
+            type: 'bar',
+            data: {
+                labels: [wrapText('Standard Weekday (Sat-Wed)'), wrapText('Intensive Weekend (Thu-Fri)')],
+                datasets: [
+                    { label: 'Concept Learning', data: [3, 4], backgroundColor: '#EEFABD' },
+                    { label: 'Problem Solving', data: [2.5, 4], backgroundColor: '#F1FF5E' },
+                    { label: 'Quick Revision', data: [1.5, 1.5], backgroundColor: '#00F7FF' },
+                    { label: 'Past Questions & Review', data: [0, 4.5], backgroundColor: '#C47BE4' }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: ttConf
+                },
+                scales: {
+                    x: { stacked: true },
+                    y: {
+                        stacked: true,
+                        title: { display: true, text: 'Study Hours Per Day', color: '#f8fafc' },
+                        max: 15
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
